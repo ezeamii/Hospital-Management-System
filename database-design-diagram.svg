@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">MongoDB collection structure for hospital management system</title>
+  <desc id="desc">Diagram showing users, doctors, and appointments collections and their relationships.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f4ec; }
+      .title { font: 700 34px Georgia, 'Times New Roman', serif; fill: #213547; }
+      .subtitle { font: 400 20px Georgia, 'Times New Roman', serif; fill: #4c5a67; }
+      .box-title { font: 700 28px Georgia, 'Times New Roman', serif; fill: #ffffff; }
+      .field { font: 400 22px Georgia, 'Times New Roman', serif; fill: #1f2933; }
+      .note { font: 400 20px Georgia, 'Times New Roman', serif; fill: #344451; }
+      .small { font: 400 18px Georgia, 'Times New Roman', serif; fill: #5b6975; }
+      .box { fill: #ffffff; stroke: #2f4858; stroke-width: 3; rx: 22; ry: 22; }
+      .head-users { fill: #3b6c8e; }
+      .head-doctors { fill: #4d7c5e; }
+      .head-appts { fill: #8a5a44; }
+      .arrow { stroke: #2f4858; stroke-width: 4; fill: none; }
+      .arrow-label { font: 600 18px Georgia, 'Times New Roman', serif; fill: #213547; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#2f4858"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="900"/>
+
+  <text class="title" x="800" y="70" text-anchor="middle">Figure 3.5.1: MongoDB Collection Structure</text>
+  <text class="subtitle" x="800" y="110" text-anchor="middle">Hospital Management System database design</text>
+
+  <g transform="translate(110,180)">
+    <rect class="box" x="0" y="0" width="360" height="430"/>
+    <rect class="head-users" x="0" y="0" width="360" height="72" rx="22" ry="22"/>
+    <rect class="head-users" x="0" y="50" width="360" height="22"/>
+    <text class="box-title" x="180" y="45" text-anchor="middle">users</text>
+    <text class="field" x="30" y="120">_id</text>
+    <text class="field" x="30" y="165">name</text>
+    <text class="field" x="30" y="210">email</text>
+    <text class="field" x="30" y="255">password</text>
+    <text class="field" x="30" y="300">role</text>
+    <text class="field" x="30" y="345">createdAt</text>
+    <text class="field" x="30" y="390">updatedAt</text>
+  </g>
+
+  <g transform="translate(620,180)">
+    <rect class="box" x="0" y="0" width="360" height="430"/>
+    <rect class="head-doctors" x="0" y="0" width="360" height="72" rx="22" ry="22"/>
+    <rect class="head-doctors" x="0" y="50" width="360" height="22"/>
+    <text class="box-title" x="180" y="45" text-anchor="middle">doctors</text>
+    <text class="field" x="30" y="120">_id</text>
+    <text class="field" x="30" y="165">name</text>
+    <text class="field" x="30" y="210">email</text>
+    <text class="field" x="30" y="255">password</text>
+    <text class="field" x="30" y="300">specialization</text>
+    <text class="field" x="30" y="345">appointments[]</text>
+    <text class="field" x="30" y="390">userId (optional)</text>
+  </g>
+
+  <g transform="translate(1130,130)">
+    <rect class="box" x="0" y="0" width="380" height="610"/>
+    <rect class="head-appts" x="0" y="0" width="380" height="72" rx="22" ry="22"/>
+    <rect class="head-appts" x="0" y="50" width="380" height="22"/>
+    <text class="box-title" x="190" y="45" text-anchor="middle">appointments</text>
+    <text class="field" x="30" y="120">_id</text>
+    <text class="field" x="30" y="160">userId</text>
+    <text class="field" x="30" y="200">fullName</text>
+    <text class="field" x="30" y="240">email</text>
+    <text class="field" x="30" y="280">phone</text>
+    <text class="field" x="30" y="320">doctor</text>
+    <text class="field" x="30" y="360">department</text>
+    <text class="field" x="30" y="400">location</text>
+    <text class="field" x="30" y="440">date</text>
+    <text class="field" x="30" y="480">diagnosis</text>
+    <text class="field" x="30" y="520">status</text>
+    <text class="field" x="30" y="560">createdAt</text>
+    <text class="field" x="30" y="600">updatedAt</text>
+  </g>
+
+  <path class="arrow" d="M 470 395 C 700 395, 900 305, 1130 305" marker-end="url(#arrowhead)"/>
+  <text class="arrow-label" x="770" y="330" text-anchor="middle">userId references patient record</text>
+
+  <path class="arrow" d="M 980 470 C 1060 470, 1070 470, 1130 470" marker-end="url(#arrowhead)"/>
+  <text class="arrow-label" x="1055" y="445" text-anchor="middle">doctor manages appointments</text>
+
+  <text class="note" x="800" y="810" text-anchor="middle">
+    The appointments collection is the central document structure linking patients, doctors, booking data, and diagnoses.
+  </text>
+  <text class="small" x="800" y="845" text-anchor="middle">
+    Note: In the implementation, doctor information in appointments is stored by name string, while patient linkage uses userId.
+  </text>
+</svg>

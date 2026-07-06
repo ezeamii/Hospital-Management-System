@@ -1,0 +1,496 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "./App.css";
+
+
+function App() {
+  // Appointment dropdown logic
+  const departments = [
+    "Cardiology",
+    "Dermatology",
+    "Pediatrics",
+    "Neurology",
+    "General Medicine",
+  ];
+
+  const doctors = [
+    { name: "Dr. Mitchell Starc", departments: ["General Medicine", "Cardiology"] },
+    { name: "Dr. Thomas Zoltan", departments: ["Neurology"] },
+    { name: "Dr. Kate Smith", departments: ["Dermatology", "Pediatrics"] },
+    { name: "Dr. Hannah Kovács", departments: ["Pediatrics"] },
+    { name: "Dr. Robert Farkas", departments: ["Dermatology"] },
+  ];
+
+  const [selectedDept, setSelectedDept] = useState("");
+  const [filteredDoctors, setFilteredDoctors] = useState([]);
+
+  return (
+    <div>
+      {/* ===== Reusable Navbar ===== */}
+      <Navbar />
+
+      {/* ===== Home Section ===== */}
+      <section id="home" className="section">
+        <div className="container-fluid">
+          <div className="row align-items-center justify-content-between">
+            
+            {/* ==== LEFT: Text Content ==== */}
+            <div className="col-md-6 home-text-box">
+              <h1 className="fw-bold">We help patients live a healthy, longer life.</h1>
+              <p>
+                Our experienced doctors provide compassionate care and advanced
+                medical solutions for every patient's needs.
+              </p>
+              <a href="#appointments" className="btn btn-primary mt-3">
+                Book an Appointment
+              </a>
+
+              <div className="stats mt-4">
+                <div>
+                  <span className="fw-bold text-primary">30+</span><br />Years of Experience
+                </div>
+                <div>
+                  <span className="fw-bold text-primary">3</span><br />Clinic Locations
+                </div>
+                <div>
+                  <span className="fw-bold text-primary">100%</span><br />Patient Satisfaction
+                </div>
+              </div>
+            </div>
+
+            {/* ==== RIGHT: Doctor Images ==== */}
+            <div className="col-md-6 d-flex justify-content-center">
+              <div className="doctor-gallery">
+                <div className="doctor-card bg-orange">
+                  <img src="/images/doc1.png" alt="Doctor 1" className="doctor-img1" />
+                </div>
+                <div className="doctor-card bg-purple">
+                  <img src="/images/doc2.png" alt="Doctor 2" className="doctor-img2" />
+                </div>
+                <div className="doctor-card bg-blue">
+                  <img src="/images/doc3.png" alt="Doctor 3" className="doctor-img3" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ==== SUBSECTION: Hospital Highlight ==== */}
+          <div className="row align-items-center justify-content-center mt-5 pt-5">
+            {/* LEFT IMAGE */}
+            <div className="col-md-5 text-center position-relative">
+              <div className="doctor-highlight bg-yellow">
+                <img
+                  src="/images/doc1.png"
+                  alt="Featured Doctor"
+                  className="featured-doctor"
+                />
+              </div>
+
+              {/* Floating name card */}
+              <div className="doctor-info-card shadow">
+                <img
+                  src="/images/doc1.png"
+                  alt="Doctor small"
+                  className="doctor-info-img"
+                />
+                <div>
+                  <h6 className="mb-0 fw-bold">Dr. Mitchell Starc</h6>
+                  <small className="text-muted">Chief Doctor of Nursing</small>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT TEXT */}
+            <div className="col-md-6">
+              <h2 className="fw-bold mb-3">Proud to be one of the nation's best</h2>
+              <p>
+                For 30 years in a row, U.S. News & World Report has recognized us as
+                one of the best hospitals in the nation and #1 in our region.
+                Our doctors and nurses deliver compassionate, world-class healthcare
+                every single day.
+              </p>
+              <p>
+                Our best is something we strive for each day, caring for our patients —
+                not looking back at what we accomplished but towards what we can do tomorrow.
+              </p>
+              <button className="btn btn-primary mt-3">Learn More</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== Services Section ===== */}
+      <section id="services" className="section text-center">
+        <div className="container">
+          <h2 className="fw-bold mb-3 text-primary">Providing the Best Medical Services</h2>
+          <p className="text-muted mb-5">
+            World-class care for everyone. Our health system offers unmatched, expert healthcare.
+          </p>
+
+          <div className="row justify-content-center">
+            {/* ---- Service 1: Find a Doctor ---- */}
+            <div className="col-md-4 mb-4">
+              <div className="service-card">
+                <img src="/images/serv1.png" alt="Find a Doctor" className="service-icon" />
+                <h5 className="mt-3">Find a Doctor</h5>
+                <p className="text-muted">
+                  World-class care for everyone. Our health system offers unmatched, expert healthcare.
+                </p>
+                <a href="/doctors" className="arrow-btn">
+                  <i className="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            {/* ---- Service 2: Find a Location ---- */}
+            <div className="col-md-4 mb-4">
+              <div className="service-card">
+                <img src="/images/serv2.png" alt="Find a Location" className="service-icon" />
+                <h5 className="mt-3">Find a Location</h5>
+                <p className="text-muted">
+                  Visit any of our clinics located conveniently near you for personalized care.
+                </p>
+                <a href="/locations" className="arrow-btn">
+                  <i className="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+
+            {/* ---- Service 3: Book Appointment ---- */}
+            <div className="col-md-4 mb-4">
+              <div className="service-card">
+                <img src="/images/serv3.png" alt="Book Appointment" className="service-icon" />
+                <h5 className="mt-3">Book Appointment</h5>
+                <p className="text-muted">
+                  Schedule your visit quickly and easily using our online appointment system.
+                </p>
+                <a href="/appointment" className="arrow-btn">
+                  <i className="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== Find a Doctor Section ===== */}
+      <section id="doctors" className="section text-center">
+        <div className="container">
+          <h2 className="fw-bold text-primary mb-3">Find a Doctor</h2>
+          <p className="text-muted mb-5">
+            World-class care for everyone. Our health system offers unmatched, expert healthcare.
+          </p>
+
+          <div className="row justify-content-center">
+            <div className="col-md-4 mb-4">
+              <div className="doctor-card-grid">
+                <div className="doctor-bg bg-light">
+                  <img
+                    src="/images/doc1.png"
+                    alt="Dr. Mitchell Starc"
+                    className="doctor-grid-img doc-img-one"
+                  />
+                </div>
+                <h5 className="mt-3 fw-bold">Dr. Mitchell Starc</h5>
+                <span className="badge bg-info text-dark mb-2">Surgeon</span>
+                <div className="rating">⭐ 4.8 (2)</div>
+                <p className="text-muted small">At Mount Adora Hospital</p>
+              </div>
+            </div>
+
+            <div className="col-md-4 mb-4">
+              <div className="doctor-card-grid">
+                <div className="doctor-bg bg-light">
+                  <img
+                    src="/images/doc2.png"
+                    alt="Dr. Thomas Zoltan"
+                    className="doctor-grid-img doc-img-two"
+                  />
+                </div>
+                <h5 className="mt-3 fw-bold">Dr. Thomas Zoltan</h5>
+                <span className="badge bg-info text-dark mb-2">Neurologist</span>
+                <div className="rating">⭐ 5.0 (2)</div>
+                <p className="text-muted small">At Mount Adora Hospital</p>
+              </div>
+            </div>
+
+            <div className="col-md-4 mb-4">
+              <div className="doctor-card-grid">
+                <div className="doctor-bg bg-light">
+                  <img
+                    src="/images/doc3.png"
+                    alt="Kate Smith"
+                    className="doctor-grid-img doc-img-three"
+                  />
+                </div>
+                <h5 className="mt-3 fw-bold">Kate Smith</h5>
+                <span className="badge bg-info text-dark mb-2">Dermatologist</span>
+                <div className="rating">⭐ 4.7 (3)</div>
+                <p className="text-muted small">At Enior Blanditis Clinic</p>
+              </div>
+            </div>
+          </div>
+
+          {/* === See More Button === */}
+          <div className="mt-4">
+            <Link to="/doctors" className="btn btn-primary see-more-btn">
+              See More
+            </Link>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ===== Appointments Section ===== */}
+      <section id="appointments" className="section text-center">
+        <div className="container">
+          <div className="row align-items-center">
+            {/* === LEFT SIDE (Image + Text) === */}
+            <div className="col-md-6 mb-4 mb-md-0">
+              <img
+                src="/images/appoindoc.png"
+                alt="Appointment Doctor"
+                className="appointment-img img-fluid"
+              />
+              <h3 className="fw-bold mt-4 text-primary">Book Your Appointment Today</h3>
+              <p className="text-muted">
+                Your health matters to us. Schedule an appointment with one of our
+                specialists and experience world-class medical care at ZamCare
+                Hospital.
+              </p>
+            </div>
+
+            {/* === RIGHT SIDE (Form) === */}
+            <div className="col-md-6">
+              <div className="appointment-form shadow-sm p-4 rounded bg-white">
+                <h4 className="fw-bold mb-3 text-primary">Appointment Form</h4>
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+
+                    const formData = {
+                      fullName: e.target.fullName.value,
+                      email: e.target.email.value,
+                      phone: e.target.phone.value,
+                      department: e.target.department.value,
+                      doctor: e.target.doctor.value,
+                      location: e.target.location.value,
+                      date: e.target.date.value,
+                    };
+
+                    try {
+                      const response = await fetch("http://localhost:5000/api/appointments", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(formData),
+                      });
+
+                      const data = await response.json();
+
+                      if (response.ok) {
+                        alert("✅ Appointment booked successfully!");
+                        e.target.reset();
+                      } else {
+                        alert("❌ " + (data.error || "Failed to book appointment."));
+                      }
+                    } catch (error) {
+                      console.error("Error:", error);
+                      alert("⚠️ Could not connect to server.");
+                    }
+                  }}
+                >
+                  {/* Full Name */}
+                  <div className="mb-3 text-start">
+                    <label className="form-label fw-semibold">Full Name</label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      className="form-control"
+                      placeholder="Enter your name"
+                      required
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div className="mb-3 text-start">
+                    <label className="form-label fw-semibold">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      className="form-control"
+                      placeholder="Enter your email"
+                      required
+                    />
+                  </div>
+
+                  {/* Phone */}
+                  <div className="mb-3 text-start">
+                    <label className="form-label fw-semibold">Phone Number</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      className="form-control"
+                      placeholder="Enter your phone number"
+                      required
+                    />
+                  </div>
+
+                  {/* Department */}
+                  <div className="mb-3 text-start">
+                    <label className="form-label fw-semibold">Department</label>
+                    <select className="form-select" name="department" required>
+                      <option value="">Select Department</option>
+                      <option>General Medicine</option>
+                      <option>Pediatrics</option>
+                      <option>Dermatology</option>
+                      <option>Cardiology</option>
+                      <option>Neurology</option>
+                    </select>
+                  </div>
+
+                  {/* Doctor */}
+                  <div className="mb-3 text-start">
+                    <label className="form-label fw-semibold">Doctor</label>
+                    <select className="form-select" name="doctor" required>
+                      <option value="">Select Doctor</option>
+                      <option>Dr. Mitchell Starc</option>
+                      <option>Dr. Thomas Zoltan</option>
+                      <option>Dr. Kate Smith</option>
+                      <option>Dr. Hannah Kovács</option>
+                      <option>Dr. Robert Farkas</option>
+                    </select>
+                  </div>
+
+                  {/* Location */}
+                  <div className="mb-3 text-start">
+                    <label className="form-label fw-semibold">Preferred Location</label>
+                    <select className="form-select" name="location" required>
+                      <option value="">Select Location</option>
+                      <option>Budapest Central Clinic</option>
+                      <option>Debrecen Medical Center</option>
+                      <option>Szeged Family Hospital</option>
+                    </select>
+                  </div>
+
+                  {/* Date */}
+                  <div className="mb-3 text-start">
+                    <label className="form-label fw-semibold">Preferred Date</label>
+                    <input type="date" name="date" className="form-control" required />
+                  </div>
+
+                  <button type="submit" className="btn btn-primary w-100 mt-3">
+                    Confirm Appointment
+                  </button>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ===== Contact Section ===== */}
+      <section id="contact" className="section">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-md-6 mb-4 mb-md-0 text-start">
+              <h2 className="fw-bold text-primary mb-3">Contact Us</h2>
+              <p className="text-muted">
+                Have questions or need assistance? Our team is always here to help. 
+                Reach out to us through any of the options below.
+              </p>
+              <ul className="list-unstyled mt-4">
+                <li className="mb-3"><i className="bi bi-geo-alt-fill text-primary me-2"></i>123 ZamCare Avenue, Budapest, Hungary</li>
+                <li className="mb-3"><i className="bi bi-telephone-fill text-primary me-2"></i>+123 456 789</li>
+                <li className="mb-3"><i className="bi bi-envelope-fill text-primary me-2"></i>info@zamcare.com</li>
+              </ul>
+              <div className="social-icons mt-4">
+                <a href="#" className="me-3 text-primary fs-5"><i className="bi bi-facebook"></i></a>
+                <a href="#" className="me-3 text-primary fs-5"><i className="bi bi-instagram"></i></a>
+                <a href="#" className="me-3 text-primary fs-5"><i className="bi bi-twitter-x"></i></a>
+                <a href="#" className="text-primary fs-5"><i className="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+
+            <div className="col-md-6">
+              <div className="contact-form shadow-sm p-4 rounded bg-white">
+                <h4 className="fw-bold mb-3 text-primary">Send a Message</h4>
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  e.target.reset();
+                  alert("✅ Message sent successfully! We'll get back to you soon.");
+                }}>
+                  <div className="mb-3 text-start">
+                    <label className="form-label fw-semibold">Full Name</label>
+                    <input type="text" className="form-control" placeholder="Enter your name" />
+                  </div>
+                  <div className="mb-3 text-start">
+                    <label className="form-label fw-semibold">Email</label>
+                    <input type="email" className="form-control" placeholder="Enter your email" />
+                  </div>
+                  <div className="mb-3 text-start">
+                    <label className="form-label fw-semibold">Message</label>
+                    <textarea rows="4" className="form-control" placeholder="Write your message here..."></textarea>
+                  </div>
+                  <button type="submit" className="btn btn-primary w-100 mt-3">
+                    Send Message
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== Login Section ===== */}
+      <section id="login" className="section">
+        <div className="container">
+          <div className="row align-items-center justify-content-center">
+            <div className="col-md-6 mb-4 mb-md-0 text-center">
+              <img src="/images/login.png" alt="Login Illustration" className="login-img img-fluid" />
+            </div>
+            <div className="col-md-5">
+              <div className="login-form shadow-sm p-4 rounded bg-white">
+                <h3 className="fw-bold mb-4 text-primary">Login to Your Account</h3>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    document.getElementById("login-success").style.display = "block";
+                    e.target.reset();
+                  }}
+                >
+                  <div className="mb-3 text-start">
+                    <label className="form-label fw-semibold">Email</label>
+                    <input type="email" className="form-control" placeholder="Enter your email" required />
+                  </div>
+                  <div className="mb-3 text-start">
+                    <label className="form-label fw-semibold">Password</label>
+                    <input type="password" className="form-control" placeholder="Enter your password" required />
+                  </div>
+                  <button type="submit" className="btn btn-primary w-100 mt-3">
+                    Login
+                  </button>
+                  <p id="login-success" className="text-success mt-3 fw-semibold" style={{ display: "none" }}>
+                    ✅ Login successful! Welcome back.
+                  </p>
+                </form>
+                <div className="mt-3 text-center">
+                  <small className="text-muted">
+                    Don’t have an account? <a href="#" className="text-primary fw-semibold">Register</a>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+}
+
+export default App;
