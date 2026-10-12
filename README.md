@@ -20,8 +20,8 @@ The system allows users to organise hospital-related information through a user 
 - **JavaScript** — Application functionality.
 - **MongoDB** — Database for storing application data.
 - **CSS** — Styling and layout.
-- Express.js
-- Node.js
+- **Express.js**
+- **Node.js**
 
 ## Getting Started
 
