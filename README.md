@@ -1,16 +1,82 @@
-# React + Vite
+# Hospital Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based hospital management system built as an academic project to demonstrate the management of patient records and appointments using a modern web application.
 
-Currently, two official plugins are available:
+The system allows users to organise hospital-related information through a user interface connected to a MongoDB database.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Note:** This project uses fictional data for demonstration purposes. It is not affiliated with a real hospital or healthcare provider.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Patient Management** — Add, view, edit, and delete patient records.
+- **Appointment Management** — Manage patient appointments.
+- **Database Integration** — Store and manage application data using MongoDB.
+- **Web-Based Interface** — Interact with hospital records through a React application.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React** — Building the user interface.
+- **Vite** — Development server and build tooling.
+- **JavaScript** — Application functionality.
+- **MongoDB** — Database for storing application data.
+- **CSS** — Styling and layout.
+- Express.js
+- Node.js
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js
+- npm
+- MongoDB access
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone YOUR_REPOSITORY_URL
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd YOUR_PROJECT_FOLDER
+   ```
+
+3. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Configure the MongoDB connection using the environment variables or configuration method required by the project.
+
+5. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+6. Open the local URL displayed in your terminal.
+
+*Note: If the application uses a separate backend server, start that server as well, following the project's configuration.*
+
+## Project Purpose
+
+This project was developed to practise web application development, database integration, and CRUD operations (Create, Read, Update, and Delete).
+
+It demonstrates how patient records and appointments can be organised in a digital system.
+
+## Limitations
+
+The current implementation focuses on patient and appointment management. Admission tracking, prescription management, and discharge management have not been implemented.
+
+## Disclaimer
+
+This is an academic demonstration project and is not intended for real-world healthcare use. Use fictional patient data only.
+
+## Author
+
+**Chidubem Ezeamii**
